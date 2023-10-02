@@ -21,7 +21,7 @@ namespace NotesApplication.Notes.Commands.UpdateNote
 
             if (entity == null || entity.UserId != request.UserId)
             {
-                new NotFoundException(nameof(Note), request.Id);
+                throw new NotFoundException(nameof(Note), request.Id);
             }
 
             entity.Details = request.Details;
