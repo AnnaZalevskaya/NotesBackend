@@ -1,6 +1,8 @@
 ﻿using MediatR;
 using Microsoft.EntityFrameworkCore;
+using NotesApplication.CommonMappings.Exceptions;
 using NotesApplication.Interfaces;
+using NotesDomain;
 
 namespace NotesApplication.Notes.Commands.UpdateNote
 {
@@ -19,8 +21,14 @@ namespace NotesApplication.Notes.Commands.UpdateNote
 
             if (entity == null || entity.UserId != request.UserId)
             {
-
+                new NotFoundException(nameof(Note), request.Id);
             }
+
+            entity.Details = request.Details;
+            entity.Title = request.Title;
+            entity.EditDate = DateTime.Now;
+
+            await _dbContext.SaveChangesAsync(cancellationToken);
 
             return Unit.Value;
         }
