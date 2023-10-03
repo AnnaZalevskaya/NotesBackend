@@ -7,8 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\NotesApplication\NotesApplication.csproj" />
-    <ProjectReference Include="..\NotesPersistence\NotesPersistence.csproj" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
   </ItemGroup>
 
 </Project>
