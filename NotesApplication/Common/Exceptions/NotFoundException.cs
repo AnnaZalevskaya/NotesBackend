@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NotesApplication.CommonMappings.Exceptions
+namespace NotesApplication.Common.Exceptions
 {
     public class NotFoundException : Exception
     {

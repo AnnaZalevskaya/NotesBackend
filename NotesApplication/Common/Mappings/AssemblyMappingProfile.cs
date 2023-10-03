@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using System.Reflection;
 
-namespace NotesApplication.CommonMappings
+namespace NotesApplication.Common.Mappings
 {
     public class AssemblyMappingProfile : Profile
     {
