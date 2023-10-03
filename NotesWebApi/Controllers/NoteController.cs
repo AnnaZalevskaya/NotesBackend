@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using NotesApplication.Notes.Commands.CreateNote;
+using NotesApplication.Notes.Commands.DeleteNote;
+using NotesApplication.Notes.Commands.UpdateNote;
 using NotesApplication.Notes.Queries.GetNoteDetails;
 using NotesApplication.Notes.Queries.GetNoteList;
 using NotesWebApi.Models;
@@ -50,5 +52,29 @@ namespace NotesWebApi.Controllers
 
             return Ok(noteId);
         }
+
+        [HttpPut]
+        public async Task<IActionResult> Update([FromBody] UpdateNoteDTO updateNoteDTO)
+        {
+            var command = _mapper.Map<UpdateNoteCommand>(updateNoteDTO);
+            command.UserId = UserId;
+            await Mediator.Send(command);
+
+            return NoContent();
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(Guid id)
+        {
+            var command = new DeleteNoteCommand
+            {
+                Id = id,
+                UserId = UserId
+            };
+            await Mediator.Send(command);
+
+            return NoContent();
+        }
+
     }
 }
