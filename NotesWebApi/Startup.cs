@@ -25,6 +25,10 @@ namespace NotesWebApi
                 config.AddProfile(new AssemblyMappingProfile(typeof(INoteDBContext).Assembly));
             });
 
+            services.AddMediatR(cfg => {
+                cfg.RegisterServicesFromAssembly(typeof(Program).Assembly);
+            });
+
             services.AddApplication();
             services.AddPersistence(Configuration);
             services.AddControllers();
