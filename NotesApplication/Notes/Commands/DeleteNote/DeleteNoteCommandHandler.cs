@@ -1,5 +1,5 @@
 ﻿using MediatR;
-using NotesApplication.CommonMappings.Exceptions;
+using NotesApplication.Common.Exceptions;
 using NotesApplication.Interfaces;
 using NotesDomain;
 
