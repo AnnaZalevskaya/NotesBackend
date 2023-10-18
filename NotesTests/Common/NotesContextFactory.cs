@@ -14,8 +14,8 @@ namespace NotesTests.Common
         public static Guid UserAId = Guid.NewGuid();
         public static Guid UserBId = Guid.NewGuid();
 
-        public static Guid UserIdForDelete = Guid.NewGuid();
-        public static Guid UserIdForUpdate = Guid.NewGuid();   
+        public static Guid NoteIdForDelete = Guid.NewGuid();
+        public static Guid NoteIdForUpdate = Guid.NewGuid();   
         
         public static NotesDBContext Create()
         {
@@ -48,7 +48,7 @@ namespace NotesTests.Common
                     CreationDate = DateTime.Today,
                     Details = "DetailsDel",
                     EditDate = null,
-                    Id = UserIdForDelete,
+                    Id = NoteIdForDelete,
                     Title = "TitleDel",
                     UserId = UserAId,
                 },
@@ -57,7 +57,7 @@ namespace NotesTests.Common
                     CreationDate = DateTime.Today,
                     Details = "DetailsUpd",
                     EditDate = null,
-                    Id = UserIdForUpdate,
+                    Id = NoteIdForUpdate,
                     Title = "TitleUpd",
                     UserId = UserBId,
                 }
