@@ -59,18 +59,19 @@ namespace NotesTests.Notes.Commands
                 new CreateNoteCommand
                 {
                     Title = "NoteTitle",
-                    UserId = NotesContextFactory.UserAId
+                    UserId = NotesContextFactory.UserAId,
+                    Details = "NoteDetails"
                 }, CancellationToken.None);
 
             //Act
             //Assert
             await Assert.ThrowsAsync<NotFoundException>(async () =>
-            await deleteHandler.Handle(
-                new DeleteNoteCommand
-                {
-                    Id = noteId,
-                    UserId = NotesContextFactory.UserBId
-                }, CancellationToken.None));
+                await deleteHandler.Handle(
+                    new DeleteNoteCommand
+                    {
+                        Id = noteId,
+                        UserId = NotesContextFactory.UserBId
+                    }, CancellationToken.None));
         }
     }
 }
