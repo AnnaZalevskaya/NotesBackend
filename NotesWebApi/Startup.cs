@@ -9,6 +9,9 @@ using NotesApplication.Interfaces;
 using NotesPersistence;
 using NotesWebApi.Middleware;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Swashbuckle.AspNetCore.SwaggerGen;
+using Microsoft.Extensions.Options;
+using Microsoft.AspNetCore.Mvc.ApiExplorer;
 
 namespace NotesWebApi
 {
@@ -56,6 +59,12 @@ namespace NotesWebApi
                     options.RequireHttpsMetadata = false;
                 });
 
+            services.AddVersionedApiExplorer(options =>
+                options.GroupNameFormat = "'v'VVV");
+
+            services.AddTransient<IConfigureOptions<SwaggerGenOptions>, 
+                ConfigureSwaggerOptions>();
+
             services.AddSwaggerGen(config =>
             {
                 var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
@@ -66,7 +75,8 @@ namespace NotesWebApi
             services.AddApiVersioning();
         }
 
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, 
+            IApiVersionDescriptionProvider provider)
         {
             if (env.IsDevelopment())
             {
@@ -75,8 +85,13 @@ namespace NotesWebApi
             app.UseSwagger();
             app.UseSwaggerUI(config =>
             {
-                config.RoutePrefix = String.Empty;
-                config.SwaggerEndpoint("swagger/v1/swagger.json", "Notes API");
+                foreach (var description in provider.ApiVersionDescriptions)
+                {
+                    config.SwaggerEndpoint(
+                        $"/swagger/{description.GroupName}/swagger.json",
+                        description.GroupName.ToUpperInvariant());
+                    config.RoutePrefix = string.Empty;
+                }
             });
             app.UseCustomExceptionHandler();
             app.UseRouting();

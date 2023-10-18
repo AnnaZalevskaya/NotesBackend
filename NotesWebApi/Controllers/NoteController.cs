@@ -10,7 +10,8 @@ using NotesWebApi.Models;
 
 namespace NotesWebApi.Controllers
 {
-    [ApiVersionNeutral]
+    [ApiVersion("1.0")]
+    [ApiVersion("2.0")]
     [Produces("application/json")]
     [Route("api/{version:apiVersion}/[controller]")]
     public class NoteController : BaseController
