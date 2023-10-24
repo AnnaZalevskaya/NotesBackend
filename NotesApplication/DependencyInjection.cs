@@ -16,6 +16,8 @@ namespace NotesApplication
                 .AddValidatorsFromAssemblies(new[] { Assembly.GetExecutingAssembly() });
             services.AddTransient(typeof(IPipelineBehavior<,>),
                 typeof(ValidationBehavvior<,>));
+            services.AddTransient(typeof(IPipelineBehavior<,>),
+                typeof(LoggingBehavior<,>));
 
             return services;
         }
