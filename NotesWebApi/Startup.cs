@@ -12,6 +12,8 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using Microsoft.Extensions.Options;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
+using Notes.Application.Interfaces;
+using NotesWebApi.Services;
 
 namespace NotesWebApi
 {
@@ -73,6 +75,9 @@ namespace NotesWebApi
             });
 
             services.AddApiVersioning();
+
+            services.AddSingleton<ICurrentUserService, CurrentUserService>();
+            services.AddHttpContextAccessor();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, 
