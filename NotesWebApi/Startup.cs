@@ -1,8 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Configuration;
-using System.Reflection;
+﻿using System.Reflection;
 using NotesApplication;
 using NotesApplication.Common.Mappings;
 using NotesApplication.Interfaces;

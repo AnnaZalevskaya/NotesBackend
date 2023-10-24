@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Notes.Application.Interfaces
+﻿namespace Notes.Application.Interfaces
 {
     public interface ICurrentUserService
     {
